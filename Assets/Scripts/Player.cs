@@ -24,12 +24,23 @@ public class Player : MonoBehaviour
     public float detectionRadius = 0.1f;
     public LayerMask floorLayer;
 
-    [Header("Debug")]
+    [Header("Ledge Detection")]
+    public Transform ledgeDetectorTransform;
+    public float detectionLength = 1;
+    public LayerMask ledgeLayer;
+    
+
     private Vector3 lastDir;
     
+    [Header("Debug")]
     public bool isOnFloor;
+    public bool ledgeDetected;
 
     private Collider[] results;
+    private RaycastHit[] hitResult;
+
+    private Vector3 ledgeStartPosition = Vector3.zero;
+    private Vector3 ledgeEndPosition = Vector3.zero;
 
     private void Awake()
     {
@@ -39,6 +50,7 @@ public class Player : MonoBehaviour
            animator = GetComponent<Animator>();
 
         results = new Collider[1];
+        hitResult = new RaycastHit[1];
     }
 
     private void FixedUpdate()
@@ -61,7 +73,26 @@ public class Player : MonoBehaviour
             animator.SetFloat("speed", 0f);
 
         CheckFloor();
+        CheckLedge();
         ApplyDrag();
+    }
+
+    public void OnClimbEnd()
+    {
+        transform.position = ledgeEndPosition;
+    }
+
+    private void CheckLedge()
+    {
+        ledgeDetected = Physics.RaycastNonAlloc(ledgeDetectorTransform.position, Vector3.down, hitResult, detectionLength, ledgeLayer) > 0;
+        if(ledgeDetected)
+        {
+            ledgeEndPosition = hitResult[0].point;
+            ledgeStartPosition = transform.position;
+            if (Input.GetKeyDown(KeyCode.Space))
+                animator.SetTrigger("jump");
+        }
+
     }
 
     private void CheckFloor()
@@ -80,10 +111,18 @@ public class Player : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (floorDetectorTransform == null) return;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(floorDetectorTransform.position, detectionRadius);
-        if (isOnFloor)
-            Gizmos.DrawWireCube(floorDetectorTransform.position, new Vector3(1, 0.2f, 1));
+        if (floorDetectorTransform != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(floorDetectorTransform.position, detectionRadius);
+            if (isOnFloor)
+                Gizmos.DrawWireCube(floorDetectorTransform.position, new Vector3(1, 0.2f, 1));
+        }
+
+        if(ledgeDetectorTransform != null)
+        {
+            Gizmos.color = ledgeDetected ? Color.green : Color.yellow;
+            Gizmos.DrawLine(ledgeDetectorTransform.position, ledgeDetectorTransform.position + Vector3.down * detectionLength);
+        }
     }
 }
