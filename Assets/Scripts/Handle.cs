@@ -53,7 +53,7 @@ public class Handle : MonoBehaviour, IActivator
     {
         if(handlePivot != null)
         {
-            Gizmos.DrawRay(handlePivot.position, handlePivot.up);
+            Gizmos.DrawRay(handlePivot.position, handlePivot.right);
         }
     }
 }

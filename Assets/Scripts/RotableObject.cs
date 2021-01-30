@@ -22,16 +22,16 @@ public class RotableObject
     public IEnumerator TemporaryAnimationForward(float initAngle, float endAngle)
     {
         _isPlayingAnimation = true;
-        float interpolation = 0;
+        float t = 0;
 
-        while (ObjectToRotate.transform.rotation != Quaternion.AngleAxis(endAngle, _axisToRotate))
+        while (t < 1f)
         {
-            interpolation += Time.deltaTime;
-            ObjectToRotate.transform.rotation = Quaternion.Lerp(Quaternion.AngleAxis(initAngle, _axisToRotate), Quaternion.AngleAxis(endAngle, _axisToRotate), interpolation);
-            yield return new WaitForEndOfFrame();
+            t += Time.deltaTime;
+            ObjectToRotate.transform.localRotation = Quaternion.Lerp(Quaternion.AngleAxis(initAngle, _axisToRotate), Quaternion.AngleAxis(endAngle, _axisToRotate), t);
+            yield return null;
         }
 
-        ObjectToRotate.transform.rotation = Quaternion.AngleAxis(endAngle, _axisToRotate);
+        ObjectToRotate.transform.localRotation = Quaternion.AngleAxis(endAngle, _axisToRotate);
         _isPlayingAnimation = false;
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PressPlatform : MonoBehaviour, IActivator
 {
@@ -10,16 +11,22 @@ public class PressPlatform : MonoBehaviour, IActivator
 
     public Activatable activatable;
 
+    public LayerMask playerLayer;
+
+    public HashSet<Collider> overlappingColliders = new HashSet<Collider>();
+
     // Start is called before the first frame update
     void Awake()
     {
-        _startPosition = transform.position;
+        _startPosition = mesh.transform.position;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != 10)
+        if (((1 << other.gameObject.layer) & playerLayer) != 0)
         {
+            overlappingColliders.Add(other);
+            
             mesh.transform.position = _startPosition - Vector3.down * pressedPosition;
             Execute();
         }
@@ -27,10 +34,14 @@ public class PressPlatform : MonoBehaviour, IActivator
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer != 10)
+        if (((1 << other.gameObject.layer) & playerLayer) != 0)
         {
-            mesh.transform.position = _startPosition;
-            Execute();
+            overlappingColliders.Remove(other);
+            if (overlappingColliders.Count == 0)
+            {
+                mesh.transform.position = _startPosition;
+                Execute();
+            }
         }
     }
 
