@@ -15837,26 +15837,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5433185263796947135, guid: d9482b2355ffc614f9368d23697a56aa,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.1753716
-      objectReference: {fileID: 0}
-    - target: {fileID: 5433185263796947135, guid: d9482b2355ffc614f9368d23697a56aa,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1.6798899
-      objectReference: {fileID: 0}
-    - target: {fileID: 5433185263796947135, guid: d9482b2355ffc614f9368d23697a56aa,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0.034671545
-      objectReference: {fileID: 0}
-    - target: {fileID: 5433185263796947135, guid: d9482b2355ffc614f9368d23697a56aa,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.037342906
-      objectReference: {fileID: 0}
     - target: {fileID: 7535094529187047998, guid: d9482b2355ffc614f9368d23697a56aa,
         type: 3}
       propertyPath: m_Name
@@ -16191,11 +16171,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Puerta
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437286642469183862, guid: 192c451136eaa504b9e34556c9d726de,
-        type: 3}
-      propertyPath: minHeight
-      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 192c451136eaa504b9e34556c9d726de, type: 3}
