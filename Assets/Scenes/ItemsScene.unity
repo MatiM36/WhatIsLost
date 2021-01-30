@@ -291,18 +291,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handlePivot: {fileID: 370172642}
   activatable: {fileID: 0}
---- !u!1 &723151392 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1187655516482637480, guid: aace770a7ae59cf4b88c7498aadb2516,
-    type: 3}
-  m_PrefabInstance: {fileID: 5611671155280815661}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &723151393 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2219558556660593528, guid: aace770a7ae59cf4b88c7498aadb2516,
-    type: 3}
-  m_PrefabInstance: {fileID: 5611671155280815661}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &969869821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -464,12 +452,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!65 &1299388014 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 8834690339301910709, guid: aace770a7ae59cf4b88c7498aadb2516,
-    type: 3}
-  m_PrefabInstance: {fileID: 5611671155280815661}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1454480633 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3889460408098547963, guid: f25b3cf8f1ebc294b9dedbf281f94fe6,
@@ -796,50 +778,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2634795605589663594, guid: aace770a7ae59cf4b88c7498aadb2516,
-        type: 3}
-      propertyPath: _spikes
-      value: 
-      objectReference: {fileID: 723151392}
-    - target: {fileID: 2634795605589663594, guid: aace770a7ae59cf4b88c7498aadb2516,
-        type: 3}
-      propertyPath: attackSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2634795605589663594, guid: aace770a7ae59cf4b88c7498aadb2516,
-        type: 3}
-      propertyPath: _boxCollider
-      value: 
-      objectReference: {fileID: 1299388014}
-    - target: {fileID: 2634795605589663594, guid: aace770a7ae59cf4b88c7498aadb2516,
-        type: 3}
-      propertyPath: retractSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2634795605589663594, guid: aace770a7ae59cf4b88c7498aadb2516,
-        type: 3}
-      propertyPath: secondsToAttack
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2634795605589663594, guid: aace770a7ae59cf4b88c7498aadb2516,
-        type: 3}
-      propertyPath: _spikesTransform
-      value: 
-      objectReference: {fileID: 723151393}
-    - target: {fileID: 2634795605589663594, guid: aace770a7ae59cf4b88c7498aadb2516,
-        type: 3}
-      propertyPath: secondsWaitingUp
-      value: 0.75
-      objectReference: {fileID: 0}
     - target: {fileID: 2769665047200030076, guid: aace770a7ae59cf4b88c7498aadb2516,
         type: 3}
       propertyPath: m_Name
       value: SpikeTrap
-      objectReference: {fileID: 0}
-    - target: {fileID: 4399882883489800080, guid: aace770a7ae59cf4b88c7498aadb2516,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5530622615109056104, guid: aace770a7ae59cf4b88c7498aadb2516,
         type: 3}
@@ -895,11 +837,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834690339301910709, guid: aace770a7ae59cf4b88c7498aadb2516,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aace770a7ae59cf4b88c7498aadb2516, type: 3}

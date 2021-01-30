@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private bool isAlive = true;
+
     [Header("Refs")]
     public new Rigidbody rigidbody;
     public Animator animator;
     public PlayerView view;
+    public Transform ragdoll;
+    public Transform physicsCollider;
+    public Hurtbox hurtbox;
 
     [Header("Movement")]
     public Vector3 horizontalAxis, verticalAxis;
@@ -73,6 +78,8 @@ public class Player : MonoBehaviour
 
         results = new Collider[1];
         hitResult = new RaycastHit[1];
+
+        hurtbox.e_OnHitReceived += Kill;
     }
 
     private void FixedUpdate()
@@ -202,6 +209,17 @@ public class Player : MonoBehaviour
         rigidbody.velocity = prevVel;
     }
 
+    public void Kill()
+    {
+        if (!isAlive) return;
+        ragdoll.gameObject.SetActive(true);
+        ragdoll.SetParent(null, true);
+        view.gameObject.SetActive(false);
+        physicsCollider.gameObject.SetActive(false);
+        rigidbody.isKinematic = true;
+        enabled = false;
+        isAlive = false;
+    }
 
     private void OnDrawGizmos()
     {
