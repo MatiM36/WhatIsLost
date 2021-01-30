@@ -18,7 +18,7 @@ public class LightSource : MonoBehaviour
 
     private void Awake()
     {
-        hits = new RaycastHit[5];
+        hits = new RaycastHit[1];
     }
 
     private void Update()
@@ -33,36 +33,32 @@ public class LightSource : MonoBehaviour
             var lastPoint = points[points.Count - 1];
             if (Physics.RaycastNonAlloc(lastPoint, nextDir, hits, maxLightTravelDistance, lightLayer) > 0)
             {
-                for (int i = 0; i < hits.Length; i++)
+                var hit = hits[0];
+                if (hit.collider == null) continue;
+
+                var reflector = hit.collider.gameObject.GetComponent<Reflector>();
+                var receiver = hit.collider.gameObject.GetComponent<LightReceiver>();
+
+
+                if (reflector != null && (points.Count == 1 || Vector3.Dot(-reflector.forwardTransform.forward, nextDir) > -0.2)) //If it hits a reflector object from its reflecting face
                 {
-                    var hit = hits[i];
-                    if (hit.collider == null) continue;
-
-                    var reflector = hit.collider.gameObject.GetComponent<Reflector>();
-                    var receiver = hit.collider.gameObject.GetComponent<LightReceiver>();
-
-                    
-                    if (reflector != null && (points.Count == 1 || Vector3.Dot(-reflector.forwardTransform.forward, nextDir) > -0.2)) //If it hits a reflector object from its reflecting face
-                    {
-                        points.Add(reflector.forwardTransform.position);
-                        nextDir = reflector.forwardTransform.forward;
-                        nextPoint = true;
-                    }
-                    else if (receiver != null)
-                    {
-                        points.Add(receiver.lightCenter.position);
-                        nextPoint = false;
-                        receiver.Toggle(true);
-                    }
-                    else //If it hits an obstacle
-                    {
-                        points.Add(hit.point);
-                        nextPoint = false;
-                    }
-
-                    break;
+                    points.Add(reflector.forwardTransform.position);
+                    nextDir = reflector.forwardTransform.forward;
+                    nextPoint = true;
                 }
-                
+                else if (receiver != null)
+                {
+                    points.Add(receiver.lightCenter.position);
+                    nextPoint = false;
+                    receiver.Toggle(true);
+                }
+                else //If it hits an obstacle
+                {
+                    points.Add(hit.point);
+                    nextPoint = false;
+                }
+
+
             }
             else
             {
