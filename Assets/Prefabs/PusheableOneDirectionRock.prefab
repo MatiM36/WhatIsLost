@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5289083861225310537}
   - component: {fileID: 5289083861225310535}
   - component: {fileID: 646316156472249861}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PusheableOneDirectionRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5289083861225310534}
   serializedVersion: 2
-  m_Mass: 2
+  m_Mass: 6
   m_Drag: 0
   m_AngularDrag: 10
   m_UseGravity: 1
@@ -107,7 +107,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.4
+  m_Radius: 0.52
+  m_Height: 2.79
   m_Direction: 1
   m_Center: {x: 0.00000005960466, y: 0, z: -0.00000008940697}
