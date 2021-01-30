@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [Header("Refs")]
     public new Rigidbody rigidbody;
     public Animator animator;
+    public PlayerView view;
 
     [Header("Movement")]
     public Vector3 horizontalAxis, verticalAxis;
@@ -19,6 +20,8 @@ public class Player : MonoBehaviour
     [Range(0,1)]
     public float airDrag = 0.05f;
 
+    private bool canMove = true;
+
     [Header("Floor Detection")]
     public Transform floorDetectorTransform;
     public float detectionRadius = 0.1f;
@@ -26,9 +29,13 @@ public class Player : MonoBehaviour
 
     [Header("Ledge Detection")]
     public Transform ledgeDetectorTransform;
+    public Transform climbEndTransform;
     public float detectionLength = 1;
     public LayerMask ledgeLayer;
-    
+
+    [Header("Jump")]
+    public float jumpForce = 10f;
+    private bool isJumping;
 
     private Vector3 lastDir;
     
@@ -57,7 +64,7 @@ public class Player : MonoBehaviour
     {
         var hor = Input.GetAxis("Horizontal");
         var vert = Input.GetAxis("Vertical");
-        if (hor != 0 || vert != 0)
+        if (canMove && (hor != 0 || vert != 0))
         {
             if (rigidbody.velocity.magnitude < maxSpeed)
             {
@@ -72,27 +79,61 @@ public class Player : MonoBehaviour
         else
             animator.SetFloat("speed", 0f);
 
+        animator.SetFloat("velocityY", rigidbody.velocity.y);
+
         CheckFloor();
         CheckLedge();
         ApplyDrag();
     }
 
+    public void OnJumpStart()
+    {
+        rigidbody.velocity += Vector3.up * jumpForce;
+        isJumping = true;
+
+        animator.ResetTrigger("jump");
+        Debug.Log("Jump Start");
+    }
+
+    public void OnJumpEnd()
+    {
+        canMove = true;
+        isJumping = false;
+
+
+        animator.ResetTrigger("jump");
+        Debug.Log("Jump End");
+    }
+
     public void OnClimbEnd()
     {
-        transform.position = ledgeEndPosition;
+        transform.position = climbEndTransform.position;
+        rigidbody.isKinematic = false;
+        canMove = true;
+        Debug.Log("Climb End");
     }
 
     private void CheckLedge()
     {
-        ledgeDetected = Physics.RaycastNonAlloc(ledgeDetectorTransform.position, Vector3.down, hitResult, detectionLength, ledgeLayer) > 0;
-        if(ledgeDetected)
+        ledgeDetected = Physics.OverlapSphereNonAlloc(ledgeDetectorTransform.position,  detectionLength, results, ledgeLayer) > 0;
+        if(ledgeDetected && isJumping)
         {
-            ledgeEndPosition = hitResult[0].point;
-            ledgeStartPosition = transform.position;
-            if (Input.GetKeyDown(KeyCode.Space))
-                animator.SetTrigger("jump");
+            StartClimb();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.SetTrigger("jump");
+            canMove = false;
         }
 
+    }
+
+    private void StartClimb()
+    {
+        rigidbody.isKinematic = true;
+        animator.SetTrigger("climb");
+
+        isJumping = false;
     }
 
     private void CheckFloor()
@@ -122,7 +163,7 @@ public class Player : MonoBehaviour
         if(ledgeDetectorTransform != null)
         {
             Gizmos.color = ledgeDetected ? Color.green : Color.yellow;
-            Gizmos.DrawLine(ledgeDetectorTransform.position, ledgeDetectorTransform.position + Vector3.down * detectionLength);
+            Gizmos.DrawWireSphere(ledgeDetectorTransform.position, detectionLength);
         }
     }
 }

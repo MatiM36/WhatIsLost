@@ -8,11 +8,16 @@ public class PlayerView : MonoBehaviour
 
     public void OnJumpStart()
     {
+        player.OnJumpStart();
     }
 
     public void OnClimbEnd()
     {
         player.OnClimbEnd();
-        transform.localPosition = Vector3.zero;
+    }
+
+    public void OnJumpEnd()
+    {
+        player.OnJumpEnd();
     }
 }

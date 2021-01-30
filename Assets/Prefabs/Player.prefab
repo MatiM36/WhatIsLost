@@ -249,6 +249,7 @@ MonoBehaviour:
   ledgeLayer:
     serializedVersion: 2
     m_Bits: 2048
+  jumpForce: 5
   isOnFloor: 0
   ledgeDetected: 0
 --- !u!54 &8346039822031436292
