@@ -650,11 +650,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PusheableOneDirectionRock
       objectReference: {fileID: 0}
-    - target: {fileID: 5289083861225310535, guid: 3d426b7c6b9ce6347b6d19361087651e,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5289083861225310539, guid: 3d426b7c6b9ce6347b6d19361087651e,
         type: 3}
       propertyPath: m_RootOrder
@@ -857,10 +852,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1566187393, guid: 1e127f20b8e4d6d45911adde7b021ba5, type: 3}
-      propertyPath: obstacleDetectionDistance
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7540703786771181685, guid: 1e127f20b8e4d6d45911adde7b021ba5,
         type: 3}
       propertyPath: m_RootOrder
