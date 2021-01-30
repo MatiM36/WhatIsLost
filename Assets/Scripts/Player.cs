@@ -82,10 +82,23 @@ public class Player : MonoBehaviour
         if (animator == null)
             animator = GetComponent<Animator>();
 
+        view.uiView = FindObjectOfType<UIView>();
+
         results = new Collider[1];
         hitResult = new RaycastHit[1];
 
         hurtbox.e_OnHitReceived += Kill;
+    }
+
+    private void Update()
+    {
+        if (interactionDetected && Input.GetKeyDown(KeyCode.F))
+            Interact();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
     }
 
     private void FixedUpdate()
@@ -115,7 +128,7 @@ public class Player : MonoBehaviour
         }
 
         animator.SetFloat("velocityY", rigidbody.velocity.y);
-       
+
 
         CheckFloor();
         CheckLedge();
@@ -127,21 +140,26 @@ public class Player : MonoBehaviour
     private void CheckInteraction()
     {
         interactionDetected = Physics.OverlapSphereNonAlloc(interactionTransform.position, interactionRadius, results, interactionLayer) > 0;
-        if (interactionDetected && Input.GetKeyDown(KeyCode.F))
-        {
-            var activator = results[0].GetComponent<IInteractuable>();
-            if(activator != null)
-            {
-                activator.Interact();
-            }
-        }
+
+        if (interactionDetected)
+            view.ShowInteractUI();
+        else
+            view.HideInteractUI();
+    }
+
+    private void Interact()
+    {
+        var activator = results[0].GetComponent<IInteractuable>();
+
+        if (activator != null)
+            activator.Interact();
     }
 
     private void CheckWall()
     {
         wallDetected = Physics.RaycastNonAlloc(wallDetectorTransform.position, lastDir, hitResult, wallDetectionDistance, wallLayer) > 0;
         animator.SetBool("wallDetected", wallDetected);
-        if(wallDetected)
+        if (wallDetected)
         {
             obstaclePos = hitResult[0].point;
             obstacleNormal = hitResult[0].normal.normalized;
@@ -153,7 +171,7 @@ public class Player : MonoBehaviour
         {
             movableObjDetected = Physics.RaycastNonAlloc(wallDetectorTransform.position, lastDir, hitResult, wallDetectionDistance, movableLayer) > 0;
 
-            if(movableObjDetected)
+            if (movableObjDetected)
             {
                 var movableObject = hitResult[0].transform.gameObject.GetComponent<IMovable>();
 
@@ -168,20 +186,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    
-
     private void CheckLedge()
     {
         ledgeDetected = Physics.OverlapSphereNonAlloc(ledgeDetectorTransform.position, detectionLength, results, ledgeLayer) > 0;
         animator.SetBool("ledgeDetected", ledgeDetected);
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetTrigger("jump");
-            canMove = false;
-        }
-
     }
 
+    private void Jump()
+    {
+        animator.SetTrigger("jump");
+        canMove = false;
+    }
 
     private void CheckFloor()
     {
@@ -263,14 +278,14 @@ public class Player : MonoBehaviour
             Gizmos.DrawWireSphere(ledgeDetectorTransform.position, detectionLength);
         }
 
-        if(wallDetectorTransform != null)
+        if (wallDetectorTransform != null)
         {
             Gizmos.color = wallDetected ? Color.red : Color.blue;
             Gizmos.DrawLine(wallDetectorTransform.position, wallDetectorTransform.position + lastDir * wallDetectionDistance);
             //Gizmos.DrawWireSphere(wallDetectorTransform.position + lastDir * wallDetectionDistance, wallDetectionRadius);
         }
 
-        if(interactionTransform != null)
+        if (interactionTransform != null)
         {
             Gizmos.color = interactionDetected ? Color.magenta : Color.black;
             Gizmos.DrawWireCube(interactionTransform.position, Vector3.one * interactionRadius);
