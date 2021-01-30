@@ -90,6 +90,7 @@ public class Player : MonoBehaviour
     {
         rigidbody.velocity += Vector3.up * jumpForce;
         isJumping = true;
+        canMove = false;
 
         animator.ResetTrigger("jump");
         Debug.Log("Jump Start");
@@ -102,13 +103,28 @@ public class Player : MonoBehaviour
 
 
         animator.ResetTrigger("jump");
+        animator.ResetTrigger("climb");
         Debug.Log("Jump End");
     }
 
+    private void TryClimb()
+    {
+        animator.SetTrigger("climb");
+    }
+
+    public void OnClimbStart()
+    {
+        rigidbody.isKinematic = true;
+
+        canMove = false;
+        isJumping = false;
+    }
     public void OnClimbEnd()
     {
         transform.position = climbEndTransform.position;
         rigidbody.isKinematic = false;
+
+        animator.ResetTrigger("climb");
         canMove = true;
         Debug.Log("Climb End");
     }
@@ -116,9 +132,9 @@ public class Player : MonoBehaviour
     private void CheckLedge()
     {
         ledgeDetected = Physics.OverlapSphereNonAlloc(ledgeDetectorTransform.position,  detectionLength, results, ledgeLayer) > 0;
-        if(ledgeDetected && isJumping)
+        if(ledgeDetected )
         {
-            StartClimb();
+            TryClimb();
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -128,13 +144,6 @@ public class Player : MonoBehaviour
 
     }
 
-    private void StartClimb()
-    {
-        rigidbody.isKinematic = true;
-        animator.SetTrigger("climb");
-
-        isJumping = false;
-    }
 
     private void CheckFloor()
     {

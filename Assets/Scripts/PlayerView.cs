@@ -11,13 +11,20 @@ public class PlayerView : MonoBehaviour
         player.OnJumpStart();
     }
 
-    public void OnClimbEnd()
-    {
-        player.OnClimbEnd();
-    }
+    
 
     public void OnJumpEnd()
     {
         player.OnJumpEnd();
+    }
+
+    public void OnClimbStart()
+    {
+        player.OnClimbStart();
+    }
+
+    public void OnClimbEnd()
+    {
+        player.OnClimbEnd();
     }
 }
