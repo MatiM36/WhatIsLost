@@ -39,8 +39,11 @@ public class Player : MonoBehaviour
     public float handSeparation = 0.5f;
     public float handReach = 0.5f;
     public LayerMask wallLayer;
-    private Vector3 wallPos;
-    private Vector3 wallNormal;
+    private Vector3 obstaclePos;
+    private Vector3 obstacleNormal;
+
+    [Header("Move Objects")]
+    public LayerMask movableLayer;
 
     [Header("Jump")]
     public float jumpForce = 10f;
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour
     public bool isOnFloor;
     public bool ledgeDetected;
     public bool wallDetected;
+    public bool movableObjDetected;
 
     private Collider[] results;
     private RaycastHit[] hitResult;
@@ -109,14 +113,28 @@ public class Player : MonoBehaviour
     private void CheckWall()
     {
         wallDetected = Physics.RaycastNonAlloc(wallDetectorTransform.position, lastDir, hitResult, wallDetectionDistance, wallLayer) > 0;
+        animator.SetBool("wallDetected", wallDetected);
         if(wallDetected)
         {
-            wallPos = hitResult[0].point;
-            wallNormal = hitResult[0].normal.normalized;
-            lastDir = -wallNormal;
+            obstaclePos = hitResult[0].point;
+            obstacleNormal = hitResult[0].normal.normalized;
+            lastDir = -obstacleNormal;
             transform.forward = lastDir;
+            movableObjDetected = false;
         }
-        animator.SetBool("wallDetected", wallDetected);
+        else
+        {
+            movableObjDetected = Physics.RaycastNonAlloc(wallDetectorTransform.position, lastDir, hitResult, wallDetectionDistance, movableLayer) > 0;
+
+            if(movableObjDetected)
+            {
+                obstaclePos = hitResult[0].point;
+                obstacleNormal = hitResult[0].normal.normalized;
+                lastDir = -obstacleNormal;
+                transform.forward = lastDir;
+            }
+        }
+
     }
 
     public void OnJumpStart()

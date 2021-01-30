@@ -32,7 +32,7 @@ public class PlayerView : MonoBehaviour
 
     private void OnAnimatorIK(int layerIndex)
     {
-        if (player.wallDetected && !player.ledgeDetected && player.isOnFloor)
+        if ((player.wallDetected || player.movableObjDetected) && !player.ledgeDetected && player.isOnFloor)
         {
             var right = Vector3.Cross(Vector3.up,player.LastDir);
             var handRot = Vector3.Cross(player.LastDir,right);
