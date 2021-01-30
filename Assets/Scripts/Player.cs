@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     [Header("Refs")]
     public new Rigidbody rigidbody;
+    public Animator animator;
 
     [Header("Movement")]
     public Vector3 horizontalAxis, verticalAxis;
@@ -34,6 +35,8 @@ public class Player : MonoBehaviour
     {
         if (rigidbody == null)
             rigidbody = GetComponent<Rigidbody>();
+        if (animator == null)
+           animator = GetComponent<Animator>();
 
         results = new Collider[1];
     }
@@ -51,7 +54,11 @@ public class Player : MonoBehaviour
             }
             lastDir = (horizontalAxis.normalized * hor + verticalAxis.normalized * vert).normalized;
             transform.forward = lastDir;
+
+            animator.SetFloat("speed", rigidbody.velocity.magnitude);
         }
+        else
+            animator.SetFloat("speed", 0f);
 
         CheckFloor();
         ApplyDrag();
@@ -60,6 +67,7 @@ public class Player : MonoBehaviour
     private void CheckFloor()
     {
         isOnFloor = Physics.OverlapSphereNonAlloc(floorDetectorTransform.position, detectionRadius, results, floorLayer) > 0;
+        animator.SetBool("isOnFloor", isOnFloor);
     }
 
     private void ApplyDrag()
