@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpikeTrap : MonoBehaviour
 {
+    public Hitbox hitbox;
+
     private const float RETRACTED_POSITION = -0.5f;
     private const float ATTACK_POSITION = 0.5f;
 
@@ -19,18 +21,8 @@ public class SpikeTrap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hitbox.e_OnHit += () => enabled = _boxCollider.enabled = false;
         StartCoroutine(Attack());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void Action()
-    {
-
     }
 
     IEnumerator Attack()
