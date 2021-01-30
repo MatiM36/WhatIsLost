@@ -72,7 +72,10 @@ public class Player : MonoBehaviour
 
     private void ApplyDrag()
     {
-        rigidbody.velocity *= 1 - floorDrag;
+        var prevVel = rigidbody.velocity;
+        prevVel *= 1 - floorDrag;
+        prevVel.y = rigidbody.velocity.y;
+        rigidbody.velocity = prevVel;
     }
 
     private void OnDrawGizmos()
