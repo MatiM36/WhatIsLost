@@ -3,29 +3,25 @@ using UnityEngine;
 
 public class Handle : MonoBehaviour, IActivator
 {
-    private const float START_ROTATION = 35;
-    private const float END_ROTATION = -35;
+    public float startRotation = 35;
+    public float endRotation = -35;
 
-    [SerializeField] private GameObject handlePivot;
+    [SerializeField] private Transform handlePivot;
     [SerializeField] private Activatable activatable;
 
     bool _isActivated;
     private RotableObject _rotableObject;
 
-    // Start is called before the first frame update
+    public Interactable interactor;
+
     void Awake()
     {
-        _rotableObject = new RotableObject(handlePivot, Vector3.right);
+        _rotableObject = new RotableObject(handlePivot.gameObject, transform.right);
+        interactor.e_OnInteractionReceived += Interact;
     }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Action();
-    }
-
-    public void Action()
+    public void Interact()
     {
         if (!_rotableObject.IsPlayingAnimation())
         {
@@ -43,13 +39,21 @@ public class Handle : MonoBehaviour, IActivator
     {
         if (_isActivated)
         {
-            StartCoroutine(_rotableObject.TemporaryAnimationForward(END_ROTATION, START_ROTATION));
+            StartCoroutine(_rotableObject.TemporaryAnimationForward(endRotation, startRotation));
         }
         else
         {
-            StartCoroutine(_rotableObject.TemporaryAnimationForward(START_ROTATION, END_ROTATION));
+            StartCoroutine(_rotableObject.TemporaryAnimationForward(startRotation, endRotation));
         }
 
         _isActivated = !_isActivated;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(handlePivot != null)
+        {
+            Gizmos.DrawRay(handlePivot.position, handlePivot.up);
+        }
     }
 }

@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8346039821503296885}
   - component: {fileID: 8346039821503296884}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8346039821503296886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0.49}
+  m_LocalPosition: {x: 0, y: 0.766, z: 0.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8346039822031436298}
@@ -289,14 +289,22 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 1024
+  obstaclePos: {x: 0, y: 0, z: 0}
+  obstacleNormal: {x: 0, y: 0, z: 0}
   movableLayer:
     serializedVersion: 2
     m_Bits: 4096
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  interactionTransform: {fileID: 8346039821503296885}
+  interactionRadius: 0.43
   jumpForce: 5
   isOnFloor: 1
   ledgeDetected: 0
   wallDetected: 1
   movableObjDetected: 0
+  interactionDetected: 0
 --- !u!54 &8346039822031436292
 Rigidbody:
   m_ObjectHideFlags: 0
