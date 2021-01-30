@@ -33,7 +33,7 @@ public class LightSource : MonoBehaviour
             var lastPoint = points[points.Count - 1];
             if (Physics.RaycastNonAlloc(lastPoint, nextDir, hits, maxLightTravelDistance, lightLayer) > 0)
             {
-                for (int i = hits.Length - 1; i >= 0; i--)
+                for (int i = 0; i < hits.Length; i++)
                 {
                     var hit = hits[i];
                     if (hit.collider == null) continue;
