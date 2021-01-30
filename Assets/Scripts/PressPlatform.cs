@@ -25,10 +25,12 @@ public class PressPlatform : MonoBehaviour, IActivator
     {
         if (((1 << other.gameObject.layer) & playerLayer) != 0)
         {
+            bool wasPressed = overlappingColliders.Count > 0;
             overlappingColliders.Add(other);
             
             mesh.transform.position = _startPosition - Vector3.down * pressedPosition;
-            Execute();
+            if(!wasPressed)
+                Toggle(true);
         }
     }
 
@@ -40,13 +42,13 @@ public class PressPlatform : MonoBehaviour, IActivator
             if (overlappingColliders.Count == 0)
             {
                 mesh.transform.position = _startPosition;
-                Execute();
+                Toggle(false);
             }
         }
     }
 
-    public void Execute()
+    public void Toggle(bool state)
     {
-        activatable.Execute();
+        activatable.Toggle(state);
     }
 }

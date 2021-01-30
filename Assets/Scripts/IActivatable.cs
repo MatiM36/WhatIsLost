@@ -1,4 +1,4 @@
 ﻿public interface IActivatable
 {
-    void Execute();
+    void Toggle(bool state);
 }

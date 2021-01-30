@@ -1,21 +1,11 @@
 ﻿using UnityEngine;
 
 public class Activatable : MonoBehaviour, IActivatable
-{ 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+{
+    public bool toggledOn = false;
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Toggle(bool state)
     {
-        
-    }
-
-    public void Execute()
-    {
-        throw new System.NotImplementedException();
+        toggledOn = state;
     }
 }

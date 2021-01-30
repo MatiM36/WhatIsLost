@@ -1,4 +1,4 @@
 ﻿public interface IActivator
 {
-    void Execute();
+    void Toggle(bool state);
 }

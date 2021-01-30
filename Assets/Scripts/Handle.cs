@@ -23,16 +23,22 @@ public class Handle : MonoBehaviour, IActivator
 
     public void Interact()
     {
+        Toggle();
+    }
+
+
+
+    public void Toggle()
+    {
         if (!_rotableObject.IsPlayingAnimation())
         {
             TemporaryMoveHandle();
-            Execute();
         }
     }
 
-    public void Execute()
+    public void Toggle(bool state)
     {
-        activatable.Execute();
+        activatable.Toggle(state);
     }
 
     private void TemporaryMoveHandle()
@@ -47,6 +53,7 @@ public class Handle : MonoBehaviour, IActivator
         }
 
         _isActivated = !_isActivated;
+        Toggle(_isActivated);
     }
 
     private void OnDrawGizmos()
