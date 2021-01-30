@@ -6,12 +6,11 @@ public class Handle : MonoBehaviour, IActivator
     private const float START_ROTATION = 35;
     private const float END_ROTATION = -35;
 
-    bool _isActivated;
-    private RotableObject _rotableObject;
-
     [SerializeField] private GameObject handlePivot;
     [SerializeField] private Activatable activatable;
 
+    bool _isActivated;
+    private RotableObject _rotableObject;
 
     // Start is called before the first frame update
     void Awake()

@@ -32,7 +32,6 @@ public class RotableObject
         }
 
         ObjectToRotate.transform.rotation = Quaternion.AngleAxis(endAngle, _axisToRotate);
-
         _isPlayingAnimation = false;
     }
 }
