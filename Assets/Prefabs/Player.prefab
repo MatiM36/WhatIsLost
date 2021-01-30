@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1905695141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1905695142}
+  m_Layer: 0
+  m_Name: WallDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1905695142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905695141}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.03, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8346039822031436298}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020897463
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8346039822031436299}
+  animator: {fileID: 3326807583420621504}
 --- !u!1 &8346039821503296886
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +184,7 @@ Transform:
   - {fileID: 4198167981791931690}
   - {fileID: 8704082635500124346}
   - {fileID: 2020897464}
+  - {fileID: 1905695142}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -175,7 +207,7 @@ MonoBehaviour:
   verticalAxis: {x: 1, y: 0, z: 1}
   maxSpeed: 3.5
   accel: 1
-  floorDrag: 0.1
+  floorDrag: 0.16
   airDrag: 0.05
   floorDetectorTransform: {fileID: 9030832616463363446}
   detectionRadius: 0.1
@@ -188,9 +220,17 @@ MonoBehaviour:
   ledgeLayer:
     serializedVersion: 2
     m_Bits: 2048
+  wallDetectorTransform: {fileID: 1905695142}
+  wallDetectionDistance: 0.47
+  handSeparation: 0.23
+  handReach: 0.34
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   jumpForce: 5
-  isOnFloor: 0
+  isOnFloor: 1
   ledgeDetected: 0
+  wallDetected: 1
 --- !u!54 &8346039822031436292
 Rigidbody:
   m_ObjectHideFlags: 0

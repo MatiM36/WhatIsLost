@@ -15,9 +15,9 @@ public class Player : MonoBehaviour
 
     public float maxSpeed = 5;
     public float accel = 1;
-    [Range(0,1)]
+    [Range(0, 1)]
     public float floorDrag = 0.05f;
-    [Range(0,1)]
+    [Range(0, 1)]
     public float airDrag = 0.05f;
 
     private bool canMove = true;
@@ -33,15 +33,26 @@ public class Player : MonoBehaviour
     public float detectionLength = 1;
     public LayerMask ledgeLayer;
 
+    [Header("Wall Detection")]
+    public Transform wallDetectorTransform;
+    public float wallDetectionDistance = 0.5f;
+    public float handSeparation = 0.5f;
+    public float handReach = 0.5f;
+    public LayerMask wallLayer;
+    private Vector3 wallPos;
+    private Vector3 wallNormal;
+
     [Header("Jump")]
     public float jumpForce = 10f;
     private bool isJumping;
 
-    private Vector3 lastDir;
-    
+    private Vector3 lastDir = Vector3.forward;
+    public Vector3 LastDir { get { return lastDir; } }
+
     [Header("Debug")]
     public bool isOnFloor;
     public bool ledgeDetected;
+    public bool wallDetected;
 
     private Collider[] results;
     private RaycastHit[] hitResult;
@@ -54,7 +65,7 @@ public class Player : MonoBehaviour
         if (rigidbody == null)
             rigidbody = GetComponent<Rigidbody>();
         if (animator == null)
-           animator = GetComponent<Animator>();
+            animator = GetComponent<Animator>();
 
         results = new Collider[1];
         hitResult = new RaycastHit[1];
@@ -66,24 +77,46 @@ public class Player : MonoBehaviour
         var vert = Input.GetAxis("Vertical");
         if (canMove && (hor != 0 || vert != 0))
         {
-            if (rigidbody.velocity.magnitude < maxSpeed)
+            if (rigidbody.velocity.magnitude < maxSpeed && !wallDetected)
             {
                 rigidbody.velocity += horizontalAxis.normalized * hor * accel;
                 rigidbody.velocity += verticalAxis.normalized * vert * accel;
+
             }
+
+
             lastDir = (horizontalAxis.normalized * hor + verticalAxis.normalized * vert).normalized;
             transform.forward = lastDir;
 
             animator.SetFloat("speed", rigidbody.velocity.magnitude);
+            animator.SetBool("moveInput", true);
         }
         else
+        {
+            animator.SetBool("moveInput", false);
             animator.SetFloat("speed", 0f);
+        }
 
         animator.SetFloat("velocityY", rigidbody.velocity.y);
+       
 
         CheckFloor();
         CheckLedge();
+        CheckWall();
         ApplyDrag();
+    }
+
+    private void CheckWall()
+    {
+        wallDetected = Physics.RaycastNonAlloc(wallDetectorTransform.position, lastDir, hitResult, wallDetectionDistance, wallLayer) > 0;
+        if(wallDetected)
+        {
+            wallPos = hitResult[0].point;
+            wallNormal = hitResult[0].normal.normalized;
+            lastDir = -wallNormal;
+            transform.forward = lastDir;
+        }
+        animator.SetBool("wallDetected", wallDetected);
     }
 
     public void OnJumpStart()
@@ -107,11 +140,6 @@ public class Player : MonoBehaviour
         Debug.Log("Jump End");
     }
 
-    private void TryClimb()
-    {
-        animator.SetTrigger("climb");
-    }
-
     public void OnClimbStart()
     {
         rigidbody.isKinematic = true;
@@ -131,11 +159,8 @@ public class Player : MonoBehaviour
 
     private void CheckLedge()
     {
-        ledgeDetected = Physics.OverlapSphereNonAlloc(ledgeDetectorTransform.position,  detectionLength, results, ledgeLayer) > 0;
-        if(ledgeDetected )
-        {
-            TryClimb();
-        }
+        ledgeDetected = Physics.OverlapSphereNonAlloc(ledgeDetectorTransform.position, detectionLength, results, ledgeLayer) > 0;
+        animator.SetBool("ledgeDetected", ledgeDetected);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetTrigger("jump");
@@ -159,6 +184,7 @@ public class Player : MonoBehaviour
         rigidbody.velocity = prevVel;
     }
 
+
     private void OnDrawGizmos()
     {
         if (floorDetectorTransform != null)
@@ -169,10 +195,17 @@ public class Player : MonoBehaviour
                 Gizmos.DrawWireCube(floorDetectorTransform.position, new Vector3(1, 0.2f, 1));
         }
 
-        if(ledgeDetectorTransform != null)
+        if (ledgeDetectorTransform != null)
         {
             Gizmos.color = ledgeDetected ? Color.green : Color.yellow;
             Gizmos.DrawWireSphere(ledgeDetectorTransform.position, detectionLength);
+        }
+
+        if(wallDetectorTransform != null)
+        {
+            Gizmos.color = wallDetected ? Color.red : Color.blue;
+            Gizmos.DrawLine(wallDetectorTransform.position, wallDetectorTransform.position + lastDir * wallDetectionDistance);
+            //Gizmos.DrawWireSphere(wallDetectorTransform.position + lastDir * wallDetectionDistance, wallDetectionRadius);
         }
     }
 }
