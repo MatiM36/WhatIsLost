@@ -121,55 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &38635365 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6243901309173322297, guid: f25b3cf8f1ebc294b9dedbf281f94fe6,
-    type: 3}
-  m_PrefabInstance: {fileID: 6057562553019338305}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &38635366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38635365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6a94f2723b124749af617a35858da82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _container: {fileID: 6057562553019338306}
---- !u!1 &68892793
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 68892794}
-  m_Layer: 12
-  m_Name: FloorDetector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &68892794
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68892793}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.418, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1566187398}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &459657390
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,65 +407,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1454480633 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3889460408098547963, guid: f25b3cf8f1ebc294b9dedbf281f94fe6,
-    type: 3}
-  m_PrefabInstance: {fileID: 6057562553019338305}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1454480637
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454480633}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1566187392 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7540703786771181688, guid: 1e127f20b8e4d6d45911adde7b021ba5,
-    type: 3}
-  m_PrefabInstance: {fileID: 7540703785800478174}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1566187393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1566187392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c176b52a4286990498fb9145f552b4b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 1566187394}
-  isOnFloor: 1
-  isTouchingPlayer: 0
-  floorDetectorTransform: {fileID: 68892794}
-  detectionRadius: 0.1
-  floorLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  floorDrag: 0.05
-  airDrag: 0.05
---- !u!54 &1566187394 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 7540703786771181689, guid: 1e127f20b8e4d6d45911adde7b021ba5,
-    type: 3}
-  m_PrefabInstance: {fileID: 7540703785800478174}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1566187398 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7540703786771181685, guid: 1e127f20b8e4d6d45911adde7b021ba5,
-    type: 3}
-  m_PrefabInstance: {fileID: 7540703785800478174}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2106265689
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,6 +650,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PusheableOneDirectionRock
       objectReference: {fileID: 0}
+    - target: {fileID: 5289083861225310535, guid: 3d426b7c6b9ce6347b6d19361087651e,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5289083861225310539, guid: 3d426b7c6b9ce6347b6d19361087651e,
         type: 3}
       propertyPath: m_RootOrder
@@ -891,16 +788,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2276615001287762781, guid: f25b3cf8f1ebc294b9dedbf281f94fe6,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c3b3b889d5d5084429d3f6bdd8003224, type: 2}
-    - target: {fileID: 4462598425378329634, guid: f25b3cf8f1ebc294b9dedbf281f94fe6,
-        type: 3}
-      propertyPath: m_Name
-      value: Container
-      objectReference: {fileID: 0}
     - target: {fileID: 4544556228137352210, guid: f25b3cf8f1ebc294b9dedbf281f94fe6,
         type: 3}
       propertyPath: m_RootOrder
@@ -963,12 +850,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f25b3cf8f1ebc294b9dedbf281f94fe6, type: 3}
---- !u!1 &6057562553019338306 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4462598425378329634, guid: f25b3cf8f1ebc294b9dedbf281f94fe6,
-    type: 3}
-  m_PrefabInstance: {fileID: 6057562553019338305}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7540703785800478174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -976,10 +857,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6383039171782705212, guid: 1e127f20b8e4d6d45911adde7b021ba5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.416
+    - target: {fileID: 1566187393, guid: 1e127f20b8e4d6d45911adde7b021ba5, type: 3}
+      propertyPath: obstacleDetectionDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7540703786771181685, guid: 1e127f20b8e4d6d45911adde7b021ba5,
         type: 3}
@@ -989,17 +869,17 @@ PrefabInstance:
     - target: {fileID: 7540703786771181685, guid: 1e127f20b8e4d6d45911adde7b021ba5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.27
       objectReference: {fileID: 0}
     - target: {fileID: 7540703786771181685, guid: 1e127f20b8e4d6d45911adde7b021ba5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.76
+      value: 3.42
       objectReference: {fileID: 0}
     - target: {fileID: 7540703786771181685, guid: 1e127f20b8e4d6d45911adde7b021ba5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.19
+      value: 10.31
       objectReference: {fileID: 0}
     - target: {fileID: 7540703786771181685, guid: 1e127f20b8e4d6d45911adde7b021ba5,
         type: 3}

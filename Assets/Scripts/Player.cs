@@ -155,10 +155,15 @@ public class Player : MonoBehaviour
 
             if(movableObjDetected)
             {
+                var movableObject = hitResult[0].transform.gameObject.GetComponent<IMovable>();
+
                 obstaclePos = hitResult[0].point;
                 obstacleNormal = hitResult[0].normal.normalized;
                 lastDir = -obstacleNormal;
                 transform.forward = lastDir;
+
+                if (movableObject != null)
+                    movableObject.Execute(lastDir);
             }
         }
     }
