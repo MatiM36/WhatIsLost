@@ -3,6 +3,7 @@
 public class PusheableRock : MonoBehaviour, IMovable
 {
     public Rigidbody rb;
+    public new BoxCollider collider;
     public bool isOnFloor;
     public bool isTouchingPlayer;
     public Transform floorDetectorTransform;
@@ -41,7 +42,7 @@ public class PusheableRock : MonoBehaviour, IMovable
     {
         movementVector = directionVector.normalized;
         if (obstaclePos) return;
-        transform.position += directionVector * Time.deltaTime;
+        rb.position += directionVector * Time.deltaTime;
     }
 
     public void Execute(Vector3 direction)
@@ -69,7 +70,11 @@ public class PusheableRock : MonoBehaviour, IMovable
 
     private void CheckMovableObject()
     {
-        obstaclePos = Physics.RaycastNonAlloc(transform.position, movementVector, hitResult, obstacleDetectionDistance, movableLayer) > 0;
+        var side = Vector3.Cross(movementVector, Vector3.up);
+
+        obstaclePos = Physics.RaycastNonAlloc(transform.position + side * collider.extents.x, movementVector, hitResult, obstacleDetectionDistance, movableLayer) > 0;
+        obstaclePos |= Physics.RaycastNonAlloc(transform.position - side * collider.extents.x, movementVector, hitResult, obstacleDetectionDistance, movableLayer) > 0;
+        obstaclePos |= Physics.RaycastNonAlloc(transform.position , movementVector, hitResult, obstacleDetectionDistance, movableLayer) > 0;
     }
 
 
@@ -78,7 +83,10 @@ public class PusheableRock : MonoBehaviour, IMovable
         if (transform != null)
         {
             Gizmos.color = movableObjDetected ? Color.red : Color.blue;
-            Gizmos.DrawLine(transform.position, transform.position + movementVector * obstacleDetectionDistance);
+
+            var side = Vector3.Cross(movementVector, Vector3.up);
+            Gizmos.DrawRay(transform.position + side * collider.extents.x,  movementVector * obstacleDetectionDistance);
+            Gizmos.DrawRay(transform.position- side * collider.extents.x,  movementVector * obstacleDetectionDistance);
         }
 
         if (floorDetectorTransform != null)
