@@ -3,18 +3,20 @@ using UnityEngine;
 
 public class Handle : MonoBehaviour, IActivator
 {
-    bool _isActivated;
-    bool _isPlayingAnimation;
+    private const float START_ROTATION = 35;
+    private const float END_ROTATION = -35;
 
-    private Quaternion _startRotation;
+    bool _isActivated;
+    private RotableObject _rotableObject;
 
     [SerializeField] private GameObject handlePivot;
     [SerializeField] private Activatable activatable;
 
+
     // Start is called before the first frame update
     void Awake()
     {
-        _startRotation = transform.localRotation;
+        _rotableObject = new RotableObject(handlePivot, Vector3.right);
     }
 
     // Update is called once per frame
@@ -26,7 +28,7 @@ public class Handle : MonoBehaviour, IActivator
 
     public void Action()
     {
-        if (!_isPlayingAnimation)
+        if (!_rotableObject.IsPlayingAnimation())
         {
             TemporaryMoveHandle();
             Execute();
@@ -42,28 +44,13 @@ public class Handle : MonoBehaviour, IActivator
     {
         if (_isActivated)
         {
-            StartCoroutine(TemporaryAnimation(-1));
+            StartCoroutine(_rotableObject.TemporaryAnimationForward(END_ROTATION, START_ROTATION));
         }
         else
         {
-            StartCoroutine(TemporaryAnimation(1));
+            StartCoroutine(_rotableObject.TemporaryAnimationForward(START_ROTATION, END_ROTATION));
         }
 
         _isActivated = !_isActivated;
-    }
-
-    IEnumerator TemporaryAnimation(float time)
-    {
-        _isPlayingAnimation = true;
-        float interpolation = 0;
-
-        while (handlePivot.transform.rotation != Quaternion.AngleAxis(-35 * time, Vector3.right))
-        {
-            interpolation += Time.deltaTime;
-            handlePivot.transform.rotation = Quaternion.Lerp(Quaternion.AngleAxis(35 * time, Vector3.right), Quaternion.AngleAxis(-35 * time, Vector3.right), interpolation);
-            yield return new WaitForEndOfFrame();
-        }
-
-        _isPlayingAnimation = false;
     }
 }
