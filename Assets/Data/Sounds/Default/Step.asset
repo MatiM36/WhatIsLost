@@ -22,7 +22,7 @@ MonoBehaviour:
     chance: 1
   avoidClipRepeat: 1
   loop: 0
-  vol: 0.03
+  vol: 0.01
   volRandomBetweenRanges: 0
   volRange: {x: 0.017811704, y: 0.023536894}
   pitch: 1

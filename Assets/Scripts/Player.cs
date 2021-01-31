@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
         rigidbody.isKinematic = false;
 
         animator.ResetTrigger("climb");
+        animator.ResetTrigger("jump");
         canMove = true;
         Debug.Log("Climb End");
     }
