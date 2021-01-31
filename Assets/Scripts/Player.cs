@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
     private Vector3 lastDir = Vector3.forward;
     public Vector3 LastDir { get { return lastDir; } }
 
+    private Vector3 inputDir;
+
     [Header("Debug")]
     public bool isOnFloor;
     public bool ledgeDetected;
@@ -170,17 +172,35 @@ public class Player : MonoBehaviour
     {
         var hor = Input.GetAxis("Horizontal");
         var vert = Input.GetAxis("Vertical");
+        inputDir = (horizontalAxis.normalized * hor + verticalAxis.normalized * vert).normalized;
+
         if (canMove && (hor != 0 || vert != 0))
         {
-            if (rigidbody.velocity.magnitude < maxSpeed && !wallDetected)
+            bool changedDirection =  Vector3.Dot(lastDir, inputDir) < 0;
+            if (rigidbody.velocity.magnitude < maxSpeed)
             {
-                rigidbody.velocity += horizontalAxis.normalized * hor * accel;
-                rigidbody.velocity += verticalAxis.normalized * vert * accel;
-
+                if (!wallDetected && !movableObjDetected) //Normal movement
+                {
+                    rigidbody.velocity += horizontalAxis.normalized * hor * accel;
+                    rigidbody.velocity += verticalAxis.normalized * vert * accel;
+                }
+                else if(movableObjDetected ) //If pushing object
+                {
+                    if (changedDirection) //If changed direction, move normally
+                    {
+                        rigidbody.velocity += horizontalAxis.normalized * hor * accel;
+                        rigidbody.velocity += verticalAxis.normalized * vert * accel;
+                    }
+                    else //If mantaining direction, keep last dir
+                    {
+                        rigidbody.velocity += lastDir * Mathf.Max(Mathf.Abs(hor), Mathf.Abs(vert)) * accel;
+                    }
+                }
             }
 
+            if(!movableObjDetected || changedDirection)//Retains the last dir if and object is in front and we didn't change dir
+                lastDir = inputDir;
 
-            lastDir = (horizontalAxis.normalized * hor + verticalAxis.normalized * vert).normalized;
             transform.forward = lastDir;
 
             animator.SetFloat("speed", rigidbody.velocity.magnitude);
