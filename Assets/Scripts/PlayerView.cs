@@ -6,6 +6,7 @@ public class PlayerView : MonoBehaviour
 {
     public Player player;
     public Animator animator;
+    public UIView uiView;
 
     public void OnJumpStart()
     {
@@ -29,6 +30,15 @@ public class PlayerView : MonoBehaviour
         player.OnClimbEnd();
     }
 
+    public void ShowInteractUI()
+    {
+        uiView.ShowInteractUI();
+    }
+
+    public void HideInteractUI()
+    {
+        uiView.HideInteractUI();
+    }
 
     private void OnAnimatorIK(int layerIndex)
     {
