@@ -18,7 +18,7 @@ public class LightSource : MonoBehaviour
 
     private void Awake()
     {
-        hits = new RaycastHit[1];
+        hits = new RaycastHit[20];
         line.useWorldSpace = true;
     }
 
@@ -32,9 +32,21 @@ public class LightSource : MonoBehaviour
         do
         {
             var lastPoint = points[points.Count - 1];
-            if (Physics.RaycastNonAlloc(lastPoint, nextDir, hits, maxLightTravelDistance, lightLayer) > 0)
+            int hitCount = Physics.RaycastNonAlloc(lastPoint, nextDir, hits, maxLightTravelDistance, lightLayer);
+            if (hitCount > 0)
             {
-                var hit = hits[0];
+                RaycastHit hit = hits[0];
+                float closestDistance = float.PositiveInfinity;
+                for (int i = 0; i < hitCount; i++)
+                {
+                    var currHit = hits[i];
+                    if (currHit.distance < closestDistance)
+                    {
+                        closestDistance = currHit.distance;
+                        hit = currHit;
+                    }
+                }
+
 
                 var reflector = hit.collider.gameObject.GetComponent<Reflector>();
                 var receiver = hit.collider.gameObject.GetComponent<LightReceiver>();
