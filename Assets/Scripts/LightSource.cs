@@ -56,6 +56,7 @@ public class LightSource : MonoBehaviour
                 {
                     points.Add(reflector.forwardTransform.position);
                     nextDir = reflector.forwardTransform.forward;
+                    reflector.Toggle(true);
                     nextPoint = true;
                 }
                 else if (receiver != null)
