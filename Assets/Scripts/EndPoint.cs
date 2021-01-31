@@ -7,7 +7,7 @@ public class EndPoint : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        SceneManager.LoadScene(levelName);
+        SceneLoader.Instance.LoadSceneWithFade(levelName);
     }
 
     public void OnTriggerEnter(Collider other)
