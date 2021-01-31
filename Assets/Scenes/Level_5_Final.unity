@@ -1994,7 +1994,7 @@ PrefabInstance:
     - target: {fileID: 1278102162354799385, guid: 442a87dba7f2f61409df0e56023e6437,
         type: 3}
       propertyPath: levelName
-      value: Menu
+      value: Photo_End_2
       objectReference: {fileID: 0}
     - target: {fileID: 8874978717870871883, guid: 442a87dba7f2f61409df0e56023e6437,
         type: 3}
