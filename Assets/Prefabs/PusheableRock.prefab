@@ -171,6 +171,7 @@ MonoBehaviour:
     m_Bits: 5120
   obstaclePos: 0
   rockMovingSound: {fileID: 11400000, guid: a82dedd9150ae9f4abfb5e25e5f81b2e, type: 2}
+  impactSound: {fileID: 11400000, guid: 10d1584880a2dec408962180123cb79d, type: 2}
   timerInSamePlace: 0
   pruebaCollider: {x: 1.1, y: 0.18, z: 1.1}
 --- !u!1 &9174503368929655569
