@@ -153,9 +153,13 @@ MonoBehaviour:
   verticalOffset: 0.7
   smoothTime: 0.3
   follow1To1: 0
+<<<<<<< Updated upstream
   shakeSound: {fileID: 11400000, guid: 45f9ea06b0922bb408f2998674a30e62, type: 2}
   shakeForce: 0.08
   duration: 4.5
+=======
+  shakeSound: {fileID: 11400000, guid: 892482c61de655b458dcd9e1e92de953, type: 2}
+>>>>>>> Stashed changes
 --- !u!114 &9104482687990978433
 MonoBehaviour:
   m_ObjectHideFlags: 0
