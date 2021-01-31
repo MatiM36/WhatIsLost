@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parent: {fileID: 0}
   _childs: []
-  _outputMixerGroup: {fileID: 243630022734369242, guid: 0be38732ed62cbe4f87869bba124d49a,
-    type: 2}
+  _outputMixerGroup: {fileID: 24300002, guid: 7be96c79334eb6a49827422dc79c0115, type: 2}
   overrideParent: 0
