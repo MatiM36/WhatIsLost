@@ -39,10 +39,6 @@ public class CameraBehaviour : MonoBehaviour
             else
                 FollowObjectSmoothy();
         }
-
-        if(Input.GetKeyDown(KeyCode.T))
-            Shake(shakeForce, duration);
-
     }
 
     public void SetObject(GameObject objectToFollow)
