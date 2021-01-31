@@ -10,19 +10,21 @@ public class CameraBehaviour : MonoBehaviour
     public float smoothTime = 0.3f;
     public bool follow1To1;
     public VinylAsset shakeSound;
+    public float shakeForce = 0.08f;
+    public float duration = 5;
 
     private float xDistance = -5;
     private float yDistance = 5;
     private float zDistance = -5;
     private Vector3 offsetPos;
     private Vector3 velocity = Vector3.zero;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
         SearchPlayer();
-        Shake(.08f, 4);
+        Shake(shakeForce, duration);
     }
 
     // Update is called once per frame
@@ -37,6 +39,10 @@ public class CameraBehaviour : MonoBehaviour
             else
                 FollowObjectSmoothy();
         }
+
+        if(Input.GetKeyDown(KeyCode.T))
+            Shake(shakeForce, duration);
+
     }
 
     public void SetObject(GameObject objectToFollow)
@@ -48,7 +54,6 @@ public class CameraBehaviour : MonoBehaviour
     {
         _objectToFollow = FindObjectOfType<Player>().gameObject;
         PositionCamera();
-        Debug.Log("La cámara está haciendo un FindObject del player. Al momento de spawnear hacer que el player sea el que hace el FindObject de la cámara y llame a la función SetObject");
     }
 
     private void PositionCamera()
@@ -73,8 +78,8 @@ public class CameraBehaviour : MonoBehaviour
         return (_objectToFollow.transform.position + Vector3.up * verticalOffset);
     }
 
-    
-    
+
+
     private Vector3 _shakeOffset = Vector3.zero;
     private float durationLowForce = 1.5f;
 
@@ -95,9 +100,10 @@ public class CameraBehaviour : MonoBehaviour
         {
             if (timer > duration / durationLowForce)
                 currentforce = lowforce;
+            else if (timer < duration / durationLowForce / 2)
+                currentforce = lowforce;
             else currentforce = force;
 
-            Debug.Log(currentforce);
             if (dir != Vector3.zero)
                 _shakeOffset = dir * (Random.value * 2 - 1) * currentforce;
             else
