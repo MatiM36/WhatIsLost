@@ -6,6 +6,7 @@ public class PusheableRock : MonoBehaviour, IMovable
     public Rigidbody rb;
     public new BoxCollider collider;
     public bool isOnFloor;
+    public bool isOnFloorPrevState;
     public bool isTouchingPlayer;
     public Transform floorDetectorTransform;
     public float detectionRadius = 0.1f;
@@ -21,26 +22,28 @@ public class PusheableRock : MonoBehaviour, IMovable
     public bool obstaclePos;
 
     public VinylAsset rockMovingSound;
+    public VinylAsset impactSound;
 
     private Collider[] results;
     private RaycastHit[] hitResult = new RaycastHit[1];
     private Vector3 movementVector = Vector3.forward;
 
-    private Vector3 currentPosition;
-    private Vector3 prevPosition;
-
     private float secondsLimitInSamePlace = 0.15f;
     public float timerInSamePlace;
 
-    private VinylAudioSource sound;
+    private VinylAudioSource moveSound;
 
     public Vector3 pruebaCollider;
+
+    private float secondsLimitToPlayImpactSound = 0.2f;
+    public float timerInlimitToPlayImpactSound;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        timerInlimitToPlayImpactSound = secondsLimitInSamePlace;
         results = new Collider[1];
-        prevPosition = transform.position;
         timerInSamePlace = secondsLimitInSamePlace;
     }
 
@@ -48,18 +51,15 @@ public class PusheableRock : MonoBehaviour, IMovable
     void Update()
     {
         timerInSamePlace -= Time.deltaTime;
-        currentPosition = transform.position;
         CheckMovableObject();
         CheckFloor();
         SetKinematic();
         ApplyDrag();
         PlayRockMovingSound();
-        prevPosition = currentPosition;
     }
 
     public void Execute(Vector3 direction)
     {
-        timerInSamePlace = secondsLimitInSamePlace;
         OneDirectionMovement(direction);
     }
 
@@ -67,19 +67,19 @@ public class PusheableRock : MonoBehaviour, IMovable
     {
         if (timerInSamePlace > 0 && isOnFloor)
         {
-            if (!sound)
+            if (!moveSound)
             {
-                sound = rockMovingSound.PlayAt(transform.position);
-                sound.Lock();
+                moveSound = rockMovingSound.PlayAt(transform.position);
+                moveSound.Lock();
             }
-            else if (!sound.IsPlaying)
-                sound.RestartSource();
+            else if (!moveSound.IsPlaying)
+                moveSound.RestartSource();
             else
-                sound.transform.position = transform.position;
+                moveSound.transform.position = transform.position;
         }
         else
         {
-            sound?.StopSource();
+            moveSound?.StopSource();
         }
     }
 
@@ -87,6 +87,7 @@ public class PusheableRock : MonoBehaviour, IMovable
     {
         movementVector = directionVector.normalized;
         if (obstaclePos) return;
+        timerInSamePlace = secondsLimitInSamePlace;
         rb.position += directionVector * Time.deltaTime;
     }
 
@@ -100,8 +101,17 @@ public class PusheableRock : MonoBehaviour, IMovable
 
     private void CheckFloor()
     {
-        isOnFloor = Physics.OverlapSphereNonAlloc(floorDetectorTransform.position, detectionRadius, results, floorLayer) > 0;
-        isOnFloor = Physics.OverlapBox(floorDetectorTransform.position, pruebaCollider, Quaternion.identity,floorLayer).Length > 0;
+        isOnFloor = Physics.OverlapBox(floorDetectorTransform.position, pruebaCollider, Quaternion.identity, floorLayer).Length > 0;
+
+        if (!isOnFloor)
+            timerInlimitToPlayImpactSound -= Time.deltaTime;
+
+        if (isOnFloorPrevState != isOnFloor && timerInlimitToPlayImpactSound <= 0)
+        {
+            isOnFloorPrevState = isOnFloor;
+            impactSound.PlayAt(transform.position);
+            timerInlimitToPlayImpactSound = secondsLimitToPlayImpactSound;
+        }
     }
 
     private void ApplyDrag()
