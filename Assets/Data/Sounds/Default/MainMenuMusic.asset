@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b1756339a637c479bd5907b065cbe2, type: 3}
-  m_Name: ImpactSound
+  m_Name: MainMenuMusic
   m_EditorClassIdentifier: 
-  category: {fileID: 11400000, guid: 2020db578b7d0484cb382842c89a1fd3, type: 2}
+  category: {fileID: 11400000, guid: fb265d2354348bc44a78f4a3ea51ae88, type: 2}
   randomClips:
-  - clip: {fileID: 8300000, guid: 3e6cc16eccc951d48b227cbe63dae0f0, type: 3}
+  - clip: {fileID: 8300000, guid: 8580ac5d582ae83448e27f16a651f5eb, type: 3}
     chance: 1
   avoidClipRepeat: 1
   loop: 0
-  vol: 0.5
+  vol: 0.25
   volRandomBetweenRanges: 0
   volRange: {x: 1, y: 1}
   pitch: 1

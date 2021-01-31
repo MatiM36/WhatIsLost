@@ -717,6 +717,7 @@ GameObject:
   - component: {fileID: 683358893}
   - component: {fileID: 683358892}
   - component: {fileID: 683358891}
+  - component: {fileID: 683358894}
   m_Layer: 5
   m_Name: Play_BTN
   m_TagString: Untagged
@@ -835,6 +836,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683358889}
   m_CullTransparentMesh: 0
+--- !u!114 &683358894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683358889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137391caf772e06449a678d97615b64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: ad948c2c53931144c954d2b1a1a23619, type: 2}
 --- !u!1 &767245580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,6 +1094,7 @@ GameObject:
   - component: {fileID: 1034540107}
   - component: {fileID: 1034540106}
   - component: {fileID: 1034540105}
+  - component: {fileID: 1034540108}
   m_Layer: 5
   m_Name: Exit_BTN (1)
   m_TagString: Untagged
@@ -1198,6 +1213,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034540103}
   m_CullTransparentMesh: 0
+--- !u!114 &1034540108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034540103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137391caf772e06449a678d97615b64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: ad948c2c53931144c954d2b1a1a23619, type: 2}
 --- !u!1 &1086024520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,6 +1864,7 @@ GameObject:
   - component: {fileID: 1693669067}
   - component: {fileID: 1693669066}
   - component: {fileID: 1693669065}
+  - component: {fileID: 1693669068}
   m_Layer: 5
   m_Name: Exit_BTN
   m_TagString: Untagged
@@ -1954,6 +1983,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693669063}
   m_CullTransparentMesh: 0
+--- !u!114 &1693669068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693669063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137391caf772e06449a678d97615b64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: ad948c2c53931144c954d2b1a1a23619, type: 2}
 --- !u!1 &1716144091
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,10 +2045,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2070,6 +2112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   credits: {fileID: 380916982}
+  mainMenuMusic: {fileID: 11400000, guid: aaa8d42e8b189aa409b173032ffd788e, type: 2}
 --- !u!1 &2069798430
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,6 +2125,7 @@ GameObject:
   - component: {fileID: 2069798434}
   - component: {fileID: 2069798433}
   - component: {fileID: 2069798432}
+  - component: {fileID: 2069798435}
   m_Layer: 5
   m_Name: Credits_BTN
   m_TagString: Untagged
@@ -2200,6 +2244,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069798430}
   m_CullTransparentMesh: 0
+--- !u!114 &2069798435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069798430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137391caf772e06449a678d97615b64f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 11400000, guid: ad948c2c53931144c954d2b1a1a23619, type: 2}
 --- !u!1001 &7734200119122093695
 PrefabInstance:
   m_ObjectHideFlags: 0

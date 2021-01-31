@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Mati36.Vinyl;
+using System.Collections;
 using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour
@@ -9,17 +9,20 @@ public class CameraBehaviour : MonoBehaviour
     public float verticalOffset = 0.7f;
     public float smoothTime = 0.3f;
     public bool follow1To1;
+    public VinylAsset shakeSound;
 
     private float xDistance = -5;
     private float yDistance = 5;
     private float zDistance = -5;
     private Vector3 offsetPos;
     private Vector3 velocity = Vector3.zero;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         SearchPlayer();
+        Shake(.08f, 4);
     }
 
     // Update is called once per frame
@@ -62,11 +65,47 @@ public class CameraBehaviour : MonoBehaviour
 
     private void FollowObjectSmoothy()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, GetObjectPositionWithVerticalOffset() + offsetPos, ref velocity, smoothTime);
+        transform.position = Vector3.SmoothDamp(transform.position, GetObjectPositionWithVerticalOffset() + offsetPos, ref velocity, smoothTime) + _shakeOffset;
     }
 
     private Vector3 GetObjectPositionWithVerticalOffset()
     {
         return (_objectToFollow.transform.position + Vector3.up * verticalOffset);
+    }
+
+    
+    
+    private Vector3 _shakeOffset = Vector3.zero;
+    private float durationLowForce = 1.5f;
+
+    public void Shake(float force, float duration)
+    {
+        StartCoroutine(CalculateOffsetForShake(force, duration, Vector3.zero));
+        shakeSound.Play();
+    }
+
+    IEnumerator CalculateOffsetForShake(float force, float duration, Vector3 direction)
+    {
+        var timer = duration;
+        var dir = direction;
+        var lowforce = force / 3;
+        var currentforce = 0.0f;
+
+        while (timer > 0)
+        {
+            if (timer > duration / durationLowForce)
+                currentforce = lowforce;
+            else currentforce = force;
+
+            Debug.Log(currentforce);
+            if (dir != Vector3.zero)
+                _shakeOffset = dir * (Random.value * 2 - 1) * currentforce;
+            else
+                _shakeOffset = Random.insideUnitSphere * currentforce;
+
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        _shakeOffset = Vector3.zero;
     }
 }
