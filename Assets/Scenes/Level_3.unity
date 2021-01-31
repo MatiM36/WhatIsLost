@@ -2203,6 +2203,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puerta
       objectReference: {fileID: 0}
+    - target: {fileID: 6913412441754374733, guid: 192c451136eaa504b9e34556c9d726de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 25f0fbee0903f154bbe50b1e56514510, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 192c451136eaa504b9e34556c9d726de, type: 3}
 --- !u!114 &2446381295915355527 stripped
@@ -3488,9 +3493,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2446381295673704787}
-  - {fileID: 1464985164}
-  - {fileID: 2010888902}
   - {fileID: 519855674}
+  - {fileID: 2010888902}
+  - {fileID: 1464985164}
   - {fileID: 128502661}
   m_Father: {fileID: 3702865793031548258}
   m_RootOrder: 23
@@ -19207,6 +19212,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puerta (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6913412441754374733, guid: 192c451136eaa504b9e34556c9d726de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 25f0fbee0903f154bbe50b1e56514510, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 192c451136eaa504b9e34556c9d726de, type: 3}
 --- !u!4 &8234610617701439145 stripped
