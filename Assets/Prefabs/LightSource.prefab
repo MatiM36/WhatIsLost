@@ -72,7 +72,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: -5, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -126,7 +126,7 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
 --- !u!1 &4204346200745673512
 GameObject:
@@ -177,3 +177,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 5121
   maxLightTravelDistance: 100
+  maxBounces: 5

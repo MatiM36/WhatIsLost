@@ -19,9 +19,10 @@ public class LightSource : MonoBehaviour
     private void Awake()
     {
         hits = new RaycastHit[1];
+        line.useWorldSpace = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         points.Clear();
         points.Add(transform.position);
@@ -34,11 +35,10 @@ public class LightSource : MonoBehaviour
             if (Physics.RaycastNonAlloc(lastPoint, nextDir, hits, maxLightTravelDistance, lightLayer) > 0)
             {
                 var hit = hits[0];
-                if (hit.collider == null) continue;
 
                 var reflector = hit.collider.gameObject.GetComponent<Reflector>();
                 var receiver = hit.collider.gameObject.GetComponent<LightReceiver>();
-
+                Debug.Log(hit.collider.gameObject.name);
 
                 if (reflector != null && (points.Count == 1 || Vector3.Dot(-reflector.forwardTransform.forward, nextDir) > -0.2)) //If it hits a reflector object from its reflecting face
                 {
