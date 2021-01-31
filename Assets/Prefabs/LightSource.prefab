@@ -4885,7 +4885,7 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 3
-    numCornerVertices: 3
+    numCornerVertices: 2
     numCapVertices: 5
     alignment: 0
     textureMode: 0
