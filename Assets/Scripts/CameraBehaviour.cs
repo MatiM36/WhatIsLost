@@ -24,7 +24,7 @@ public class CameraBehaviour : MonoBehaviour
     void Start()
     {
         SearchPlayer();
-        Shake(shakeForce, duration);
+        Shake(shakeForce, duration, true);
     }
 
     // Update is called once per frame
@@ -79,10 +79,11 @@ public class CameraBehaviour : MonoBehaviour
     private Vector3 _shakeOffset = Vector3.zero;
     private float durationLowForce = 1.5f;
 
-    public void Shake(float force, float duration)
+    public void Shake(float force, float duration, bool soundOn)
     {
         StartCoroutine(CalculateOffsetForShake(force, duration, Vector3.zero));
-        shakeSound.Play();
+        if (soundOn)
+            shakeSound.Play();
     }
 
     IEnumerator CalculateOffsetForShake(float force, float duration, Vector3 direction)

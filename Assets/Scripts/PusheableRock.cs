@@ -117,6 +117,7 @@ public class PusheableRock : MonoBehaviour, IMovable
             isOnFloorPrevState = isOnFloor;
             impactSound.PlayAt(transform.position);
             timerInlimitToPlayImpactSound = secondsLimitToPlayImpactSound;
+            FindObjectOfType<CameraBehaviour>().Shake(.4f, .35f, false);
         }
     }
 
