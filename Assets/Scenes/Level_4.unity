@@ -129,6 +129,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 482579426323209091, guid: d881053ad75b1aa499eab7e1f25be273,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482579426434662572, guid: d881053ad75b1aa499eab7e1f25be273,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 940236026245843732, guid: d881053ad75b1aa499eab7e1f25be273,
         type: 3}
       propertyPath: m_RootOrder
@@ -162,6 +172,11 @@ PrefabInstance:
     - target: {fileID: 1967114730739046720, guid: d881053ad75b1aa499eab7e1f25be273,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372062158581350652, guid: d881053ad75b1aa499eab7e1f25be273,
+        type: 3}
+      propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2372062158581350652, guid: d881053ad75b1aa499eab7e1f25be273,
@@ -514,6 +529,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level-Test-Luz
       objectReference: {fileID: 0}
+    - target: {fileID: 8591152340718350045, guid: d881053ad75b1aa499eab7e1f25be273,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.123121
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591152340718350045, guid: d881053ad75b1aa499eab7e1f25be273,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.3375086
+      objectReference: {fileID: 0}
     - target: {fileID: 8591152341793768347, guid: d881053ad75b1aa499eab7e1f25be273,
         type: 3}
       propertyPath: m_RootOrder
@@ -644,12 +669,22 @@ PrefabInstance:
     - target: {fileID: 1278102162354799385, guid: 442a87dba7f2f61409df0e56023e6437,
         type: 3}
       propertyPath: levelName
-      value: Level_5
+      value: Level_5_Final
       objectReference: {fileID: 0}
     - target: {fileID: 8874978717870871883, guid: 442a87dba7f2f61409df0e56023e6437,
         type: 3}
       propertyPath: m_Name
       value: EndPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874978717870871884, guid: 442a87dba7f2f61409df0e56023e6437,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.1673456
+      objectReference: {fileID: 0}
+    - target: {fileID: 8874978717870871884, guid: 442a87dba7f2f61409df0e56023e6437,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.08367296
       objectReference: {fileID: 0}
     - target: {fileID: 8874978717870871885, guid: 442a87dba7f2f61409df0e56023e6437,
         type: 3}
@@ -794,6 +829,11 @@ PrefabInstance:
     - target: {fileID: 2718753941825108037, guid: 6ba6750f74e2887489af86e775a990aa,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3085811145143433391, guid: 6ba6750f74e2887489af86e775a990aa,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
