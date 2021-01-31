@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnPoint : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class SpawnPoint : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
-            InstantiatePlayer();
+            SceneLoader.Instance.LoadSceneWithFade(SceneManager.GetActiveScene().name);
+
     }
 
     public void InstantiatePlayer()
