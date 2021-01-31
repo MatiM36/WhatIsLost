@@ -105,6 +105,7 @@ MonoBehaviour:
   interactor: {fileID: 339018309}
   startAngle: 0
   angleToRotate: 45
+  rotateMirrorSound: {fileID: 11400000, guid: d4a65024e4ff7674f875b9b10e7ee45f, type: 2}
   _container: {fileID: 8669973037798613534}
 --- !u!1001 &1279830791841149701
 PrefabInstance:

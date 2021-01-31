@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Mati36.Vinyl;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class Door : Activatable
 
     Vector3 closePos, openPos;
 
+    public VinylAsset doorSound;
+
     private void Awake()
     {
         closePos = openPos = doorTransform.localPosition;
@@ -24,7 +27,7 @@ public class Door : Activatable
     public override void Toggle(bool state)
     {
         base.Toggle(state);
-
+        doorSound.PlayAt(transform.position);
         open = state;
     }
 

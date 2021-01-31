@@ -75,6 +75,69 @@ public class Player : MonoBehaviour
     private Vector3 ledgeStartPosition = Vector3.zero;
     private Vector3 ledgeEndPosition = Vector3.zero;
 
+    public void OnJumpStart()
+    {
+        rigidbody.velocity += Vector3.up * jumpForce;
+        isJumping = true;
+        canMove = false;
+
+        animator.ResetTrigger("jump");
+        Debug.Log("Jump Start");
+    }
+
+    public void OnJumpEnd()
+    {
+        canMove = true;
+        isJumping = false;
+
+
+        animator.ResetTrigger("jump");
+        animator.ResetTrigger("climb");
+        Debug.Log("Jump End");
+    }
+
+    public void OnClimbStart()
+    {
+        rigidbody.isKinematic = true;
+
+        canMove = false;
+        isJumping = false;
+    }
+    public void OnClimbEnd()
+    {
+        transform.position = climbEndTransform.position;
+        rigidbody.isKinematic = false;
+
+        animator.ResetTrigger("climb");
+        canMove = true;
+        Debug.Log("Climb End");
+    }
+    public void Kill()
+    {
+        if (!isAlive) return;
+        ragdoll.gameObject.SetActive(true);
+        ragdoll.SetParent(null, true);
+        view.gameObject.SetActive(false);
+        physicsCollider.gameObject.SetActive(false);
+        rigidbody.isKinematic = true;
+        enabled = false;
+        isAlive = false;
+        PlayDieSound();
+    }
+
+    public void PlayStepSound()
+    {
+        view.PlayStepSound();
+    }
+    public void PlayJumpSound()
+    {
+        view.PlayJumpSound();
+    }
+    public void PlayDieSound()
+    {
+        view.PlayDieSound();
+    }
+
     private void Awake()
     {
         if (rigidbody == null)
@@ -198,45 +261,7 @@ public class Player : MonoBehaviour
     {
         isOnFloor = Physics.OverlapSphereNonAlloc(floorDetectorTransform.position, detectionRadius, results, floorLayer) > 0;
         animator.SetBool("isOnFloor", isOnFloor);
-    }
-
-    public void OnJumpStart()
-    {
-        rigidbody.velocity += Vector3.up * jumpForce;
-        isJumping = true;
-        canMove = false;
-
-        animator.ResetTrigger("jump");
-        Debug.Log("Jump Start");
-    }
-
-    public void OnJumpEnd()
-    {
-        canMove = true;
-        isJumping = false;
-
-
-        animator.ResetTrigger("jump");
-        animator.ResetTrigger("climb");
-        Debug.Log("Jump End");
-    }
-
-    public void OnClimbStart()
-    {
-        rigidbody.isKinematic = true;
-
-        canMove = false;
-        isJumping = false;
-    }
-    public void OnClimbEnd()
-    {
-        transform.position = climbEndTransform.position;
-        rigidbody.isKinematic = false;
-
-        animator.ResetTrigger("climb");
-        canMove = true;
-        Debug.Log("Climb End");
-    }
+    }    
 
     private void ApplyDrag()
     {
@@ -244,18 +269,6 @@ public class Player : MonoBehaviour
         prevVel *= 1 - floorDrag;
         prevVel.y = rigidbody.velocity.y;
         rigidbody.velocity = prevVel;
-    }
-
-    public void Kill()
-    {
-        if (!isAlive) return;
-        ragdoll.gameObject.SetActive(true);
-        ragdoll.SetParent(null, true);
-        view.gameObject.SetActive(false);
-        physicsCollider.gameObject.SetActive(false);
-        rigidbody.isKinematic = true;
-        enabled = false;
-        isAlive = false;
     }
 
     private void OnDrawGizmos()

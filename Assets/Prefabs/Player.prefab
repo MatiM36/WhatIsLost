@@ -162,6 +162,9 @@ MonoBehaviour:
   player: {fileID: 8346039822031436299}
   animator: {fileID: 3326807583420621504}
   uiView: {fileID: 7649526399835947895}
+  stepSound: {fileID: 11400000, guid: 6ea1f7d2f08c8bb4996ecfb6fa2091ab, type: 2}
+  JumpSound: {fileID: 11400000, guid: 81e5a15802315904eaa2f890c23b4bec, type: 2}
+  dieSound: {fileID: 11400000, guid: 36c903ec508999e47bdf7a4d940028cf, type: 2}
 --- !u!1 &8346039821503296886
 GameObject:
   m_ObjectHideFlags: 0
