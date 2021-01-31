@@ -530,13 +530,11 @@ MonoBehaviour:
   nextButton: {fileID: 1747950287}
   transitionTime: 1
   imagesToShow:
-  - {fileID: 2800000, guid: 910c1d689927ef240ae3c4bc121e9bfa, type: 3}
-  - {fileID: 2800000, guid: b4f98b6a938491747baaf23e060bcb83, type: 3}
-  - {fileID: 2800000, guid: 023e27f8882fdf046a26e99e5a8ff635, type: 3}
-  - {fileID: 2800000, guid: fc2dcf77514ad8149908d0d41a4ba563, type: 3}
-  - {fileID: 2800000, guid: 62edd96eeed8f6c459c29e09ca6229e4, type: 3}
-  - {fileID: 2800000, guid: b312660b58c13384fa17aa06146e69d5, type: 3}
-  nextScene: Level_3
+  - {fileID: 2800000, guid: c72e816e5a8e2064b90c6ca867761b7b, type: 3}
+  - {fileID: 2800000, guid: f971442f7216f214ca1adf390fe38f4a, type: 3}
+  - {fileID: 2800000, guid: 59ee5c26291900846815ee0c270c9dda, type: 3}
+  - {fileID: 2800000, guid: e487a8119dccd9a4295c00904c79abcf, type: 3}
+  nextScene: Menu
 --- !u!114 &1006452188
 MonoBehaviour:
   m_ObjectHideFlags: 0

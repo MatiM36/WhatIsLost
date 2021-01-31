@@ -30,9 +30,11 @@ public class PhotoSlider : MonoBehaviour
 
     public void NextPhoto()
     {
-        if (currentImage >= imagesToShow.Count) return;
         if (currentShowRoutine == null)
-            currentShowRoutine = StartCoroutine(ShowRoutine(imagesToShow[currentImage]));
+        {
+            var photo = currentImage >= imagesToShow.Count ? null : imagesToShow[currentImage];
+            currentShowRoutine = StartCoroutine(ShowRoutine(photo));
+        }
     }
 
     IEnumerator ShowRoutine(Texture2D photo)
@@ -48,7 +50,7 @@ public class PhotoSlider : MonoBehaviour
         }
 
         currentImage++;
-        if (currentImage >= imagesToShow.Count)
+        if (currentImage > imagesToShow.Count)
         {
             sceneLoader.LoadSceneWithFade(nextScene);
         }
