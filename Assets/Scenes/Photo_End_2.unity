@@ -535,6 +535,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 59ee5c26291900846815ee0c270c9dda, type: 3}
   - {fileID: 2800000, guid: e487a8119dccd9a4295c00904c79abcf, type: 3}
   nextScene: Menu
+  backGroundSound: {fileID: 11400000, guid: 946f2123c5154a2458fa2408a59b644a, type: 2}
 --- !u!114 &1006452188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,10 +914,10 @@ RectTransform:
   m_Father: {fileID: 1006452191}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1370, y: -816}
-  m_SizeDelta: {x: 364.81665, y: 68.40312}
+  m_AnchorMin: {x: 0.68852085, y: 0.22700001}
+  m_AnchorMax: {x: 0.739, y: 0.27}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1747950287
 MonoBehaviour:

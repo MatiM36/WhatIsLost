@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Mati36.Vinyl;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,8 @@ public class PhotoSlider : MonoBehaviour
 
     public string nextScene = "";
 
+    public VinylAsset backGroundSound;
+
     private void Start()
     {
         nextImage.color = Color.clear;
@@ -26,6 +29,7 @@ public class PhotoSlider : MonoBehaviour
         image.texture = imagesToShow[0];
         currentImage = 1;
         nextButton.gameObject.SetActive(true);
+        backGroundSound.Play();
     }
 
     public void NextPhoto()
