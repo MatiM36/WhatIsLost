@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level_5_Final.unity
     guid: 4035e28b8c0190b4097fd4617c67443e
+  - enabled: 1
+    path: Assets/Scenes/Photo_Intro.unity
+    guid: bb2b7dac30994524ea29494098afd1df
+  - enabled: 1
+    path: Assets/Scenes/Photo_Mid.unity
+    guid: b95dfc8d31d799e4f8a13bce10076a6c
+  - enabled: 1
+    path: Assets/Scenes/Photo_End_1.unity
+    guid: 19926959dc48ed6409015b061f18acd7
   m_configObjects: {}
