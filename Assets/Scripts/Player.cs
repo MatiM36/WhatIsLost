@@ -136,6 +136,11 @@ public class Player : MonoBehaviour
     public void PlayDieSound()
     {
         view.PlayDieSound();
+    }  
+    
+    public void PlayClimbSound()
+    {
+        view.PlayClimbSound();
     }
 
     private void Awake()

@@ -10,21 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b1756339a637c479bd5907b065cbe2, type: 3}
-  m_Name: Step
+  m_Name: RockMoving
   m_EditorClassIdentifier: 
   category: {fileID: 11400000, guid: 2020db578b7d0484cb382842c89a1fd3, type: 2}
   randomClips:
-  - clip: {fileID: 8300000, guid: 10fc3273fbe844c46a8cd5da5bec1f23, type: 3}
-    chance: 1
-  - clip: {fileID: 8300000, guid: 42e0f8cefe257084fa845f8d31454492, type: 3}
-    chance: 1
-  - clip: {fileID: 8300000, guid: 0f850c600f8b9cd4891bc1b2108c817e, type: 3}
+  - clip: {fileID: 8300000, guid: cc49614d82d1da546bebf56008657296, type: 3}
     chance: 1
   avoidClipRepeat: 1
-  loop: 0
-  vol: 0.03
+  loop: 1
+  vol: 1
   volRandomBetweenRanges: 0
-  volRange: {x: 0.017811704, y: 0.023536894}
-  pitch: 1
+  volRange: {x: 1, y: 1}
+  pitch: 0.85
   pitchRandomBetweenRanges: 0
-  pitchRange: {x: 0.90839696, y: 1.091603}
+  pitchRange: {x: 1, y: 1.2}

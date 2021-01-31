@@ -918,6 +918,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1566187393, guid: 1e127f20b8e4d6d45911adde7b021ba5, type: 3}
+      propertyPath: pruebaCollider.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1566187393, guid: 1e127f20b8e4d6d45911adde7b021ba5, type: 3}
+      propertyPath: pruebaCollider.y
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1566187393, guid: 1e127f20b8e4d6d45911adde7b021ba5, type: 3}
+      propertyPath: pruebaCollider.z
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7540703786771181685, guid: 1e127f20b8e4d6d45911adde7b021ba5,
         type: 3}
       propertyPath: m_RootOrder

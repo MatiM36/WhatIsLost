@@ -11,6 +11,7 @@ public class PlayerView : MonoBehaviour
     public VinylAsset stepSound;
     public VinylAsset JumpSound;
     public VinylAsset dieSound;
+    public VinylAsset climbSound;
 
     public void OnJumpStart()
     {
@@ -54,6 +55,11 @@ public class PlayerView : MonoBehaviour
     public void PlayDieSound()
     {
         dieSound.Play();
+    }  
+    
+    public void PlayClimbSound()
+    {
+        climbSound.Play();
     }
 
     private void OnAnimatorIK(int layerIndex)
