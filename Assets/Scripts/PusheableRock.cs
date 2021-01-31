@@ -38,6 +38,8 @@ public class PusheableRock : MonoBehaviour, IMovable
     private float secondsLimitToPlayImpactSound = 0.2f;
     public float timerInlimitToPlayImpactSound;
 
+    private float timerToReproduceSound = 0.5f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +58,8 @@ public class PusheableRock : MonoBehaviour, IMovable
         SetKinematic();
         ApplyDrag();
         PlayRockMovingSound();
+
+        timerToReproduceSound -= Time.deltaTime;
     }
 
     public void Execute(Vector3 direction)
@@ -65,6 +69,8 @@ public class PusheableRock : MonoBehaviour, IMovable
 
     private void PlayRockMovingSound()
     {
+        if (timerToReproduceSound > 0) return;
+
         if (timerInSamePlace > 0 && isOnFloor)
         {
             if (!moveSound)

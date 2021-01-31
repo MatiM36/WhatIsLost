@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: {fileID: 11400000, guid: 2020db578b7d0484cb382842c89a1fd3, type: 2}
   randomClips:
-  - clip: {fileID: 8300000, guid: cc49614d82d1da546bebf56008657296, type: 3}
+  - clip: {fileID: 8300000, guid: 21e15db28b3871948bc96fcdaddd6609, type: 3}
     chance: 1
   avoidClipRepeat: 1
   loop: 1
-  vol: 1
+  vol: 0.29
   volRandomBetweenRanges: 0
   volRange: {x: 1, y: 1}
-  pitch: 0.85
+  pitch: 1
   pitchRandomBetweenRanges: 0
-  pitchRange: {x: 1, y: 1.2}
+  pitchRange: {x: 1, y: 1}
