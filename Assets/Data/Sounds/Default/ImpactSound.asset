@@ -20,7 +20,7 @@ MonoBehaviour:
   loop: 0
   vol: 1
   volRandomBetweenRanges: 0
-  volRange: {x: 0, y: 1}
-  pitch: 0.9
+  volRange: {x: 1, y: 1}
+  pitch: 1
   pitchRandomBetweenRanges: 0
   pitchRange: {x: 1, y: 1}
