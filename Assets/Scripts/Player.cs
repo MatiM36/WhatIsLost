@@ -82,8 +82,6 @@ public class Player : MonoBehaviour
         if (animator == null)
             animator = GetComponent<Animator>();
 
-        view.uiView = FindObjectOfType<UIView>();
-
         results = new Collider[1];
         hitResult = new RaycastHit[1];
 
@@ -96,9 +94,7 @@ public class Player : MonoBehaviour
             Interact();
 
         if (Input.GetKeyDown(KeyCode.Space))
-        {
             Jump();
-        }
     }
 
     private void FixedUpdate()

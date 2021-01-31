@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 829508846206107351}
+  - component: {fileID: 5856129656072092808}
   m_Layer: 5
   m_Name: UIView
   m_TagString: Untagged
@@ -36,6 +37,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5856129656072092808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161727687479167449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b42416bd3feb86b4e9f34db9f3bcfa2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactContainer: {fileID: 2664067365404870740}
 --- !u!1 &2664067365404870740
 GameObject:
   m_ObjectHideFlags: 0
@@ -52,7 +66,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6355776922811214919
 RectTransform:
   m_ObjectHideFlags: 0
@@ -321,8 +335,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: INTERACT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 89f2eb60516653a418a91ae5139925fd, type: 2}
-  m_sharedMaterial: {fileID: -8188266395118742471, guid: 89f2eb60516653a418a91ae5139925fd,
+  m_fontAsset: {fileID: 11400000, guid: ddcdc6a03d2c0194b8c2433a53408408, type: 2}
+  m_sharedMaterial: {fileID: 1881816697238298298, guid: ddcdc6a03d2c0194b8c2433a53408408,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
