@@ -43,6 +43,26 @@ public class PlayerView : MonoBehaviour
         uiView.HideInteractUI();
     }
 
+    public void ShowMoveUI()
+    {
+        uiView.ShowMoveUI();
+    }
+
+    public void HideMoveUI()
+    {
+        uiView.HideMoveUI();
+    }
+
+    public void ShowJumpUI()
+    {
+        uiView.ShowJumpUI();
+    }
+
+    public void HideJumpUI()
+    {
+        uiView.HideJumpUI();
+    }
+
     public void PlayStepSound()
     {
         stepSound.Play();
