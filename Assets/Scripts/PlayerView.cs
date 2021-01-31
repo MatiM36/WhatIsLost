@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Mati36.Vinyl;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +8,14 @@ public class PlayerView : MonoBehaviour
     public Player player;
     public Animator animator;
     public UIView uiView;
+    public VinylAsset stepSound;
+    public VinylAsset JumpSound;
+    public VinylAsset dieSound;
 
     public void OnJumpStart()
     {
         player.OnJumpStart();
-    }
-
-    
+    }    
 
     public void OnJumpEnd()
     {
@@ -38,6 +40,20 @@ public class PlayerView : MonoBehaviour
     public void HideInteractUI()
     {
         uiView.HideInteractUI();
+    }
+
+    public void PlayStepSound()
+    {
+        stepSound.Play();
+    }
+
+    public void PlayJumpSound()
+    {
+        JumpSound.Play();
+    }
+    public void PlayDieSound()
+    {
+        dieSound.Play();
     }
 
     private void OnAnimatorIK(int layerIndex)

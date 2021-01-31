@@ -144,6 +144,7 @@ MonoBehaviour:
   maxHeight: 0
   minHeight: -3
   openTime: 2
+  doorSound: {fileID: 11400000, guid: 6ee10897ba768ea46a38f9f5533cdee0, type: 2}
 --- !u!1 &8597082317928894113
 GameObject:
   m_ObjectHideFlags: 0

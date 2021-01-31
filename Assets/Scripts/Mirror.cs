@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Mati36.Vinyl;
+using UnityEngine;
 
 public class Mirror : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class Mirror : MonoBehaviour
     public float startAngle = 0f;
     private float currentAngle;
     public float angleToRotate = 45;
+    public VinylAsset rotateMirrorSound;
 
     [SerializeField] private GameObject _container;
 
@@ -28,6 +30,7 @@ public class Mirror : MonoBehaviour
 
     private void TemporaryMoveHandle()
     {
+        rotateMirrorSound.PlayAt(transform.position);
         StartCoroutine(_rotableObject.TemporaryAnimationForward(currentAngle, currentAngle + angleToRotate));
         currentAngle = currentAngle + angleToRotate;
     }
