@@ -155,6 +155,7 @@ MonoBehaviour:
   rb: {fileID: 7540703786771181689}
   collider: {fileID: 7540703786771181686}
   isOnFloor: 1
+  isOnFloorPrevState: 0
   isTouchingPlayer: 0
   floorDetectorTransform: {fileID: 68892794}
   detectionRadius: 0.1
@@ -174,6 +175,7 @@ MonoBehaviour:
   impactSound: {fileID: 11400000, guid: 10d1584880a2dec408962180123cb79d, type: 2}
   timerInSamePlace: 0
   pruebaCollider: {x: 1.1, y: 0.18, z: 1.1}
+  timerInlimitToPlayImpactSound: 0
 --- !u!1 &9174503368929655569
 GameObject:
   m_ObjectHideFlags: 0
